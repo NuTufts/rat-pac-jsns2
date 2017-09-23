@@ -47,7 +47,7 @@ cint_cls= Split('DS/Root DS/MC DS/EV DS/MCParticle DS/MCPhoton '
 
 
 cint_headers = ['include/RAT/' + clsname for clsname in cint_cls]
-if bool(ARGUMENTS.get('cppjailbreak', True)):
+if bool(ARGUMENTS.get('cppjailbreak', False)):
     jailbreak_env = env.Clone(CPPDEFINES=[('protected','public')])
     ratdict = jailbreak_env.RootDict(os.path.join(jailbreak_env['BUILDDIR'], 'RAT_Dict_jailbreak.cc'),
                                      cint_headers)

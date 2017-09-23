@@ -1,0 +1,10 @@
+*~
+*.pyc
+config.log
+env.sh
+env.csh
+rat.*.log
+.sconf_temp/*
+.sconsign.dblite
+build/*
+lib/*
