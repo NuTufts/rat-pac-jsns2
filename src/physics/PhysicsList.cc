@@ -81,7 +81,7 @@ void PhysicsList::EnableThermalNeutronScattering() {
 
   // Exclude the thermal scattering region (below 4 eV) from the "regular"
   // elastic scattering model
-  n_elastic_hp->SetMinEnergy(4.*eV);
+  n_elastic_hp->SetMinEnergy(4.*CLHEP::eV);
 
   // Use the more detailed HP thermal scattering treatment below 4 eV instead
   n_elastic_process->RegisterMe(new G4NeutronHPThermalScattering);
@@ -159,7 +159,7 @@ void PhysicsList::ConstructOpticalProcesses() {
   opBoundaryProcess->SetVerboseLevel(verboseLevel-1);
 
   // Apply processes to all particles where applicable
-  theParticleIterator->reset();
+  auto theParticleIterator = GetParticleIterator();
   while((*theParticleIterator)()) {
     G4ParticleDefinition* particle = theParticleIterator->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
@@ -178,7 +178,7 @@ void PhysicsList::ConstructOpticalProcesses() {
 void PhysicsList::AddParameterization() {
   G4FastSimulationManagerProcess* fastSimulationManagerProcess =
     new G4FastSimulationManagerProcess();
-  theParticleIterator->reset();
+  auto theParticleIterator = GetParticleIterator();  
   while((*theParticleIterator)()) {
     G4ParticleDefinition* particle = theParticleIterator->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
